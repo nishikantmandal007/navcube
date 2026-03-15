@@ -182,7 +182,6 @@
 
       this.hovNavi=null; this.hovBtn=null;
       this.dragging=false; this.lastMouse=null;
-      this.idleSince=performance.now(); this.autoRot=true;
       this.dpr=1;
 
       this._statusEl=document.getElementById('demo-status-left');
@@ -500,10 +499,7 @@
         this.dir=vslerp(this.animD0,this.animD1,st);this.up=vslerp(this.animU0,this.animU1,st);
         if(t>=1){this.anim=false;this.dir=this.animD1.slice();this.up=this.animU1.slice();}
       }
-      if(!this.dragging&&!this.anim){
-        if(now-this.idleSince>5000)this.autoRot=true;
-        if(this.autoRot){this.orbit(0.003,0.0002);this._setStatus('ISO view \u00b7 Z-up');}
-      }
+      // no auto-rotation — user interacts directly
       this._draw();
       requestAnimationFrame(t=>this._frame(t));
     }

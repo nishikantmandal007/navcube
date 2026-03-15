@@ -82,6 +82,43 @@ pip install navcube[vtk]       # + VTK connector
 
 ---
 
+## Try it now
+
+Run this from your terminal or a Jupyter cell — it opens a live window with a working NavCube:
+
+```python
+import sys
+from PySide6.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel
+from PySide6.QtCore import Qt
+from navcube import NavCubeOverlay
+
+app = QApplication(sys.argv)
+win = QWidget()
+win.setWindowTitle("My First NavCube")
+win.resize(800, 600)
+win.setStyleSheet("background: #2b2d3a;")
+
+label = QLabel("Click a NaviCube face to change the view")
+label.setStyleSheet("color: #aab0c4; font-size: 14px;")
+label.setAlignment(Qt.AlignCenter)
+QVBoxLayout(win).addWidget(label)
+win.show()
+
+cube = NavCubeOverlay(parent=win)
+cube.viewOrientationRequested.connect(
+    lambda dx, dy, dz, ux, uy, uz:
+        label.setText(f"Dir ({dx:+.2f}, {dy:+.2f}, {dz:+.2f})  Up ({ux:+.2f}, {uy:+.2f}, {uz:+.2f})")
+)
+cube.show()
+cube.move(win.width() - cube.width() - 10, 10)
+
+sys.exit(app.exec())
+```
+
+Click any face on the NaviCube and the label updates with the new orientation — that's the signal your real camera would respond to.
+
+---
+
 ## Quick start
 
 ```python
