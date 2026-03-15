@@ -20,10 +20,9 @@ Drag to orbit. Click a NaviCube face (top-right corner) to snap to that view. Sc
 
 <div id="demo-canvas" style="width:100%; height:400px; border:1px solid #ccc; border-radius:8px; overflow:hidden; background:#1a1d23; margin:1rem 0;"></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="{{ '/assets/js/demo.js' | relative_url }}"></script>
 
-<small><em>This browser demo uses Three.js. The actual widget uses QPainter and runs natively in any PySide6 app.</em></small>
+<small><em>Live port of the actual NaviCubeOverlay — same geometry, same projection, same SLERP snapping. Runs natively in PySide6 via QPainter.</em></small>
 
 ---
 
