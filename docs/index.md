@@ -16,9 +16,9 @@ Zero renderer dependency. Full style control. Drop-in ready.
 
 ## Interactive Demo
 
-Drag to orbit. Click a NaviCube face (top-right corner) to snap to that view. Scroll to zoom.
+Drag the viewport to orbit. Click a face on the NaviCube (top-right) to snap to that view. Use the arrow buttons to step-orbit.
 
-<div id="demo-canvas" style="width:100%; height:400px; border:1px solid #ccc; border-radius:8px; overflow:hidden; background:#1a1d23; margin:1rem 0;"></div>
+<div id="demo-canvas" style="width:100%; height:480px; border:1px solid #d0d7de; border-radius:8px; overflow:hidden; margin:1rem 0;"></div>
 
 <script src="{{ '/assets/js/demo.js' | relative_url }}"></script>
 
