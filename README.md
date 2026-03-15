@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/logo.svg" width="180" alt="NavCube logo"/>
+  <img src="https://raw.githubusercontent.com/nishikantmandal007/navcube/main/assets/logo.svg" width="200" alt="NavCube logo"/>
 </p>
 
 # NavCube
@@ -58,7 +58,7 @@ Run this from a terminal or Jupyter cell to open a live window with a working Na
 ```python
 import sys
 from PySide6.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, QPoint
 from navcube import NavCubeOverlay
 
 app = QApplication(sys.argv)
@@ -79,7 +79,20 @@ cube.viewOrientationRequested.connect(
         label.setText(f"Dir ({dx:+.2f}, {dy:+.2f}, {dz:+.2f})  Up ({ux:+.2f}, {uy:+.2f}, {uz:+.2f})")
 )
 cube.show()
-cube.move(win.width() - cube.width() - 10, 10)
+
+# NavCubeOverlay is a Qt.Tool floating window — position needs global
+# screen coordinates, not parent-relative coordinates.
+def place_cube():
+    pos = win.mapToGlobal(QPoint(win.width() - cube.width() - 10, 10))
+    cube.move(pos)
+
+place_cube()
+
+# Reposition when the window moves or resizes
+_orig_resize = win.resizeEvent
+_orig_move   = win.moveEvent
+win.resizeEvent = lambda e: (_orig_resize(e), place_cube())
+win.moveEvent   = lambda e: (_orig_move(e),   place_cube())
 
 sys.exit(app.exec())
 ```
