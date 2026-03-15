@@ -7,12 +7,12 @@ name = "navcube"
 version = "1.0.0"
 description = "A 3D orientation cube widget for PySide6 — renderer-agnostic, drop-in ready"
 readme = "README.md"
-license = { text = "LGPL-2.1" }
+license = { text = "MIT" }
 requires-python = ">=3.10"
 keywords = ["pyside6", "qt", "navcube", "navicube", "viewcube", "3d", "cad", "orientation"]
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: GNU Lesser General Public License v2 (LGPLv2)",
+    "License :: OSI Approved :: MIT License",
     "Topic :: Software Development :: User Interfaces",
     "Topic :: Scientific/Engineering :: Visualization",
 ]

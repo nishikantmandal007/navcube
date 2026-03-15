@@ -124,6 +124,12 @@ Optional: `pythonocc-core` (OCC connector), `vtk` (VTK connector).
 
 ---
 
+## Acknowledgements
+
+NavCube is directly inspired by [FreeCAD's NaviCube](https://wiki.freecad.org/Navigation_Cube). The face layout, edge/corner regions, and click-to-snap behaviour all follow FreeCAD's lead. Huge thanks to the FreeCAD team for setting such a high bar.
+
+---
+
 ## License
 
-LGPL-2.1
+MIT
