@@ -9,6 +9,44 @@
   }
   .code-block-wrapper:hover .copy-btn { opacity: 1; }
   .copy-btn.copied { background: #2a9a5e; }
+
+  /* ── CAD viewer frame ─────────────────────────────── */
+  .cad-frame {
+    border: 1px solid #3a3e4a;
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 1.2rem 0 1.5rem;
+    background: #1e2029;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.45);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  .cad-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+    height: 30px;
+    background: #23262f;
+    border-color: #3a3e4a;
+    font-size: 11px;
+    color: #8a8fa0;
+    user-select: none;
+  }
+  .cad-bar-top  { border-bottom: 1px solid #3a3e4a; }
+  .cad-bar-bottom { border-top: 1px solid #3a3e4a; }
+  .cad-bar-left, .cad-bar-right { display: flex; align-items: center; gap: 10px; }
+  .cad-viewport-badge {
+    background: #2e5fa3;
+    color: #ccd6f6;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 10.5px;
+    letter-spacing: 0.02em;
+  }
+  .cad-hint-text { color: #666c80; font-size: 10.5px; }
+  .cad-status-left  { color: #a0c4ff; font-size: 10.5px; }
+  .cad-status-right { color: #555b6e; font-size: 10.5px; }
+  #demo-canvas { display: block; }
 </style>
 <script>
   document.addEventListener("DOMContentLoaded", function () {

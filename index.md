@@ -14,6 +14,28 @@ NavCube is a 3D orientation cube widget for PySide6. Drop it into any 3D viewpor
 
 ---
 
+## Live demo
+
+<div class="cad-frame">
+  <div class="cad-bar cad-bar-top">
+    <div class="cad-bar-left">
+      <span class="cad-viewport-badge">&#9635; Perspective</span>
+    </div>
+    <div class="cad-bar-right">
+      <span class="cad-hint-text">Drag to orbit &nbsp;&middot;&nbsp; Click NaviCube face to snap</span>
+    </div>
+  </div>
+  <div id="demo-canvas" style="width:100%;height:460px;display:block;"></div>
+  <div class="cad-bar cad-bar-bottom">
+    <span id="demo-status-left" class="cad-status-left">ISO view &nbsp;&middot;&nbsp; Z-up</span>
+    <span class="cad-status-right">NavCube &mdash; OCC-style viewport &nbsp;&middot;&nbsp; PySide6 + QPainter</span>
+  </div>
+</div>
+
+<script src="{{ '/assets/js/demo.js' | relative_url }}"></script>
+
+---
+
 ## Why NavCube exists
 
 NavCube grew out of real pain in [Osdag](https://osdag.fossee.in), an open-source structural steel design tool built on PythonOCC. Osdag lets users open multiple design tabs, each with its own 3D renderer. We wanted a navigation cube on every tab — and that's where things got ugly.
