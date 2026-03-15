@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pyside-navicube"
-version = "1.0.0"
+version = "0.0.1"
 description = "FreeCAD-style NaviCube overlay widget for PySide6 — zero renderer dependency"
 readme = "README.md"
 license = { text = "LGPL-2.1" }
