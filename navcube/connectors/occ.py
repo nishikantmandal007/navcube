@@ -1,5 +1,5 @@
 """
-occ_navicube_sync.py  —  OCC ↔ NavCubeOverlay synchronisation helper
+navcube.connectors.occ  —  OCC ↔ NavCubeOverlay synchronisation helper
 ═══════════════════════════════════════════════════════════════════════
 Bridges an OCC V3d_View with a NavCubeOverlay widget.
 
@@ -9,8 +9,8 @@ publishable as a pure-Qt library.
 
 Usage
 ─────
-    from osdag_gui.ui.components.navicube_overlay import NavCubeOverlay
-    from osdag_gui.ui.components.occ_navicube_sync import OCCNavCubeSync
+    from navcube import NavCubeOverlay
+    from navcube.connectors.occ import OCCNavCubeSync
 
     navicube = NavCubeOverlay(parent=tab_widget)
     navicube.show()
