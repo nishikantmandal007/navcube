@@ -992,65 +992,25 @@ class NaviCubeOverlay(QWidget):
                       min(255, int(base.blue() * shade)))
 
     def _draw_label(self, p, f, R, U, cx, cy, font, text, col):
-        """Draw a face label using signed-area winding detection to prevent mirroring."""
+        """Draw a face label via direct quad mapping — no mirror detection needed.
+
+        label_pts are [BL, BR, TR, TL] in the face's own coordinate system.
+        Faces are only drawn when facing the camera (dot < _VIS), so the
+        projected quad always preserves the face's natural reading direction.
+        quadToQuad handles the perspective distortion; the 1-to-1 corner
+        mapping guarantees the text reads left-to-right on every visible face.
+        """
         pad = self._PAD
-        # Project label quad corners to device-space (including PAD offset).
+        # Project to device-space (including PAD offset for paintEvent translate).
         dst_pts = [QPointF(pt.x() + pad, pt.y() + pad)
                    for pt in (self._proj(lp, R, U, cx, cy) for lp in f['label_pts'])]
 
-        # label_pts order: [bottom-left, bottom-right, top-right, top-left]
-        # in face-local coords.  Indices: 0=BL, 1=BR, 2=TR, 3=TL.
-
-        # Signed area via cross product of two edges from pts[0].
-        # edge1 = pts[1] - pts[0]  (bottom edge, left→right in face space)
-        # edge2 = pts[3] - pts[0]  (left edge, bottom→top in face space)
-        e1x = dst_pts[1].x() - dst_pts[0].x()
-        e1y = dst_pts[1].y() - dst_pts[0].y()
-        e2x = dst_pts[3].x() - dst_pts[0].x()
-        e2y = dst_pts[3].y() - dst_pts[0].y()
-        signed_area = e1x * e2y - e1y * e2x
-
-        # Mirrored if signed area is negative (clockwise winding in screen space).
-        mirrored = signed_area < 0.0
-
-        # Check if the face is upside-down in screen space.
-        # "Up" in face space goes from bottom edge midpoint to top edge midpoint.
-        # Bottom midpoint = avg(pts[0], pts[1]), Top midpoint = avg(pts[3], pts[2]).
-        bot_mid_y = (dst_pts[0].y() + dst_pts[1].y()) * 0.5
-        top_mid_y = (dst_pts[2].y() + dst_pts[3].y()) * 0.5
-        # In screen coords, y increases downward.  Face-up should point to
-        # smaller y.  If top_mid_y > bot_mid_y, the face is upside-down.
-        upside_down = top_mid_y > bot_mid_y
-
-        # Map source polygon corners to correct for mirroring and flipping.
-        # The source is a 200x200 virtual canvas: TL=(0,0), TR=(200,0),
-        # BR=(200,200), BL=(0,200).
-        # Normal (no correction): src maps [TL, TR, BR, BL] → dst [0,1,2,3]
-        #   src = [TL, TR, BR, BL] = [(0,0),(200,0),(200,200),(0,200)]
-        # Mirrored: swap left↔right in src
-        #   src = [TR, TL, BL, BR] = [(200,0),(0,0),(0,200),(200,200)]
-        # Upside-down: swap top↔bottom in src
-        #   src = [BL, BR, TR, TL] = [(0,200),(200,200),(200,0),(0,0)]
-        # Both: swap both
-        #   src = [BR, BL, TL, TR] = [(200,200),(0,200),(0,0),(200,0)]
-
-        TL = QPointF(0, 0)
-        TR = QPointF(200, 0)
-        BR = QPointF(200, 200)
-        BL = QPointF(0, 200)
-
-        if not mirrored and not upside_down:
-            src = QPolygonF([TL, TR, BR, BL])
-        elif mirrored and not upside_down:
-            src = QPolygonF([TR, TL, BL, BR])
-        elif not mirrored and upside_down:
-            src = QPolygonF([BL, BR, TR, TL])
-        else:  # mirrored and upside_down
-            src = QPolygonF([BR, BL, TL, TR])
-
-        # Destination quad: pts[0]=BL, pts[1]=BR, pts[2]=TR, pts[3]=TL
-        # QTransform.quadToQuad maps src corners [0,1,2,3] → dst corners [0,1,2,3].
-        # We need dst ordered as [TL, TR, BR, BL] to match source layout expectation.
+        # Text canvas: 200x200, TL=(0,0) TR=(200,0) BR=(200,200) BL=(0,200)
+        # Face label_pts: [0]=BL [1]=BR [2]=TR [3]=TL
+        # Map canvas corners 1-to-1 to projected face corners:
+        #   src[i] → dst[i]  where ordering is [TL, TR, BR, BL]
+        src = QPolygonF([QPointF(0, 0), QPointF(200, 0),
+                         QPointF(200, 200), QPointF(0, 200)])
         dst = QPolygonF([dst_pts[3], dst_pts[2], dst_pts[1], dst_pts[0]])
 
         tf = QTransform()
