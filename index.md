@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Home
-nav_order: 1
+sort: 1
 ---
 
 # NavCube

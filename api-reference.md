@@ -1,7 +1,7 @@
 ---
 layout: default
 title: API Reference
-nav_order: 6
+sort: 6
 ---
 
 # API Reference

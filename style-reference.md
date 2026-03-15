@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Style Reference
-nav_order: 7
+sort: 7
 ---
 
 # Style Reference

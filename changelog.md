@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Changelog
-nav_order: 8
+sort: 8
 ---
 
 # Changelog

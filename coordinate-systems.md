@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Coordinate Systems
-nav_order: 5
+sort: 5
 ---
 
 # Coordinate Systems

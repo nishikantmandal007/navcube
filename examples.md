@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Examples
-nav_order: 6
+sort: 3
 ---
 
 # Examples
