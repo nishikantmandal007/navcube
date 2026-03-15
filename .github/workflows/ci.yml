@@ -82,6 +82,9 @@ jobs:
     name: Deploy Documentation
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    concurrency:
+      group: pages-${{ github.ref }}
+      cancel-in-progress: true
     permissions:
       pages: write
       id-token: write
