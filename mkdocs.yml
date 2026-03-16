@@ -15,15 +15,15 @@ theme:
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: green
-      accent: light green
+      primary: custom
+      accent: custom
       toggle:
         icon: material/weather-night
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: green
-      accent: light green
+      primary: custom
+      accent: custom
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode
@@ -37,6 +37,9 @@ theme:
     - content.code.copy
     - content.code.annotate
     - toc.follow
+
+extra_css:
+  - stylesheets/extra.css
 
 markdown_extensions:
   - admonition
@@ -59,12 +62,14 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - Getting Started: getting-started.md
-  - Connectors: connectors.md
-  - Style Reference: style-reference.md
-  - Coordinate Systems: coordinate-systems.md
-  - Examples: examples.md
-  - API Reference: api-reference.md
+  - Guides:
+    - Getting Started: getting-started.md
+    - Connectors: connectors.md
+    - Coordinate Systems: coordinate-systems.md
+    - Examples: examples.md
+  - Reference:
+    - Style Reference: style-reference.md
+    - API Reference: api-reference.md
   - Changelog: changelog.md
 
 extra:
