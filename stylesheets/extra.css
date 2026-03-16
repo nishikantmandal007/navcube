@@ -1,19 +1,25 @@
-/* Crimson red primary color override for MkDocs Material */
+/* ── Brand color: #7A0019 deep maroon ───────────────────────────── */
 :root,
 [data-md-color-scheme="default"] {
-  --md-primary-fg-color:        #C0132B;
-  --md-primary-fg-color--light: #E8354D;
-  --md-primary-fg-color--dark:  #8C0D1F;
+  --md-primary-fg-color:        #7A0019;
+  --md-primary-fg-color--light: #9E0020;
+  --md-primary-fg-color--dark:  #580012;
   --md-primary-bg-color:        #ffffff;
   --md-primary-bg-color--light: rgba(255, 255, 255, 0.7);
-  --md-accent-fg-color:         #E8354D;
+  --md-accent-fg-color:         #9E0020;
 }
 
 [data-md-color-scheme="slate"] {
-  --md-primary-fg-color:        #C0132B;
-  --md-primary-fg-color--light: #E8354D;
-  --md-primary-fg-color--dark:  #8C0D1F;
+  --md-primary-fg-color:        #7A0019;
+  --md-primary-fg-color--light: #9E0020;
+  --md-primary-fg-color--dark:  #580012;
   --md-primary-bg-color:        #ffffff;
   --md-primary-bg-color--light: rgba(255, 255, 255, 0.7);
-  --md-accent-fg-color:         #E8354D;
+  --md-accent-fg-color:         #9E0020;
+}
+
+/* ── Navbar logo: invert to white so it shows on the dark header ── */
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg {
+  filter: brightness(0) invert(1);
 }
